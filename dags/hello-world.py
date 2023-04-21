@@ -9,7 +9,7 @@ default_args = {
     'retries': 0
 }
 
-dag = DAG('my_first_dag', default_args=default_args, schedule_interval='@once')
+dag = DAG('git-sync-test_dag', default_args=default_args, schedule_interval='@once')
 
 task1 = BashOperator(
     task_id='task1',
