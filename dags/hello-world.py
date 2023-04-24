@@ -1,26 +1,20 @@
+"""DAG with a custom operator that creates and writes example data to GCS. """
+
 from airflow import DAG
-from airflow.operators.bash_operator import BashOperator
 from datetime import datetime
+from custom_operators.gcs_operators import ExampleDataToGCSOperator
 
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'start_date': datetime(2023, 4, 21),
-    'retries': 0
-}
+with DAG(
+    'create_and_write_example_data_to_gcs',
+    start_date=datetime(2021, 1, 1),
+    schedule_interval='@daily'
+) as dag:
 
-dag = DAG('git-sync-test_dag', default_args=default_args, schedule_interval='@once')
+    create_and_write_example_data = ExampleDataToGCSOperator(
+        task_id='create_example_data',
+        run_date='{{ ds }}',
+        gcp_conn_id='airflow_gke_gcs_conn_id',
+        gcs_bucket='example-data-bucket'
+    )
 
-task1 = BashOperator(
-    task_id='task1',
-    bash_command='echo "Hello World"',
-    dag=dag
-)
-
-task2 = BashOperator(
-    task_id='task2',
-    bash_command='echo "Airflow is awesome!"',
-    dag=dag
-)
-
-task1 >> task2
+    create_and_write_example_data
