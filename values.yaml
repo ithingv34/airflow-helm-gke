@@ -60,8 +60,8 @@ airflowVersion: "2.5.3"
 # Images
 images:
   airflow:
-    repository: ~
-    tag: ~
+    repository: us-central1-docker.pkg.dev/engaged-aviary-384322/airflow-gke/airflow-plugins-dependencies
+    tag: 1.0.0
     # Specifying digest takes precedence over tag.
     digest: ~
     pullPolicy: IfNotPresent
@@ -2049,4 +2049,5 @@ logs:
     storageClassName:
     ## the name of an existing PVC to use
     existingClaim:
+
 
