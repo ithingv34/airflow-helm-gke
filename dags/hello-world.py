@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-from airflow.operators.mongodb import MongoHook
+from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from datetime import datetime
 
