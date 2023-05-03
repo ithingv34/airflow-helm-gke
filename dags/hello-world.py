@@ -21,7 +21,7 @@ task1 = BashOperator(
 
 task2 = BashOperator(
         task_id='task2',
-        bash_command='echo "Airflow is awesome!  test  "',
+        bash_command='echo "Airflow is awesome!  test from wsl "',
         dag=dag
     )
 
