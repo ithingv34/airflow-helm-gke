@@ -4,8 +4,8 @@
 import os
 from airflow.models import DagBag
 dags_dirs = [
-                '/opt/airflow/project_a', 
-                '/opt/airflow/project_b'
+                '/opt/airflow/dags/project_a', 
+                '/opt/airflow/dags/project_b'
             ]
 
 for dir in dags_dirs:
